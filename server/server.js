@@ -30,10 +30,11 @@ app.post("/api/contact", async (req, res) => {
       });
     }
 
-    const { data, error } = await resend.emails.send({
-      from: "Portfolio <onboarding@resend.dev>",
-      to: ["shivaprakashnaidukarri@gmail.com"],
-      subject: `Portfolio Contact: ${subject}`,
+     const { data, error } = await resend.emails.send({
+        from: "Portfolio <onboarding@resend.dev>",
+        to: ["shivaprakashnaidukarri@gmail.com"],
+        replyTo: email,
+        subject: `Portfolio Contact: ${subject}`,
       html: `
         <h2>New Portfolio Message</h2>
 
