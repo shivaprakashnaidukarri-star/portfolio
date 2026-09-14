@@ -10,7 +10,7 @@ export const profile = {
   email: "shivaprakashnaidukarri@gmail.com",
   phone: "9490458844",
 
-  github: "https://github.com/shivaprakashnaidu-star",
+  github: "https://github.com/shivaprakashnaidukarri-star",
 
   linkedin: "https://www.linkedin.com/in/karrishivaprakashnaidu/",
 
