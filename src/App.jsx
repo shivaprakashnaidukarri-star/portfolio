@@ -114,6 +114,7 @@ const NAV_LINKS = [
   { href: "#projects", label: "Projects" },
   { href: "#education", label: "Education" },
   { href: "#interests", label: "Interests" },
+  { href: "/resume.pdf", label: "Resume", external: true },
   { href: "#contact", label: "Say Hi" },
 ];
 
@@ -131,16 +132,21 @@ function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  function handleClick(e, href) {
-    e.preventDefault();
-    setOpen(false);
+  function handleClick(e, href, external) {
+  setOpen(false);
 
-    const el = document.querySelector(href);
-
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
+  if (external) {
+    return;
   }
+
+  e.preventDefault();
+
+  const el = document.querySelector(href);
+
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth" });
+  }
+}
 
   const navbarClassName = scrolled
     ? "navbar navbar--scrolled"
@@ -161,13 +167,15 @@ function Navbar() {
           {NAV_LINKS.map((link) => {
             return (
               <a
-                key={link.href}
-                href={link.href}
-                className="navbar__link"
-                onClick={(e) => handleClick(e, link.href)}
-              >
-                {link.label}
-              </a>
+  key={link.href}
+  href={link.href}
+  className="navbar__link"
+  onClick={(e) => handleClick(e, link.href, link.external)}
+  target={link.external ? "_blank" : undefined}
+  rel={link.external ? "noreferrer noopener" : undefined}
+>
+  {link.label}
+</a>
             );
           })}
         </nav>
@@ -195,14 +203,16 @@ function Navbar() {
           >
             {NAV_LINKS.map((link) => {
               return (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="navbar__mobile-link"
-                  onClick={(e) => handleClick(e, link.href)}
-                >
-                  {link.label}
-                </a>
+               <a
+  key={link.href}
+  href={link.href}
+  className="navbar__mobile-link"
+  onClick={(e) => handleClick(e, link.href, link.external)}
+  target={link.external ? "_blank" : undefined}
+  rel={link.external ? "noreferrer noopener" : undefined}
+>
+  {link.label}
+</a>
               );
             })}
           </motion.nav>
